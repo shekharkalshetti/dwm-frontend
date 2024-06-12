@@ -288,7 +288,8 @@ export default async function HomePage() {
                       <CircleOff className="sm:h-8 sm:w-8 md:h-10 md:w-10 mb-5" />
                       <h3 className="px-10 sm:text-sm md:text-lg lg:text-xl tracking-tight text-center">
                         You have not created any departments. <br />
-                        Click on the "Create department" button to begin.
+                        Click on the &quot;Create department&quot; button to
+                        begin.
                       </h3>
                     </div>
                   </div>
