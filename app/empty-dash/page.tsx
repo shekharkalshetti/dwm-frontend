@@ -3,6 +3,7 @@ import { Login } from "@/components/login";
 import { ModeToggle } from "@/components/mode-toggle";
 
 import {
+  CircleOff,
   File,
   Home,
   LineChart,
@@ -50,34 +51,8 @@ import Link from "next/link";
 
 import { WorkOS } from "@workos-inc/node";
 import { HomeCalendar } from "@/components/calender";
-import DeptCard from "@/components/department-card";
-import { getCurrentDate } from "./department/page";
 
 export default async function HomePage() {
-  const { user } = await getUser();
-
-  const workos = new WorkOS(process.env.WORKOS_API_KEY);
-
-  // const workosdata = await workos.userManagement.sendInvitation({
-  //   email: "1032211009@mitwpu.edu.in",
-  //   organizationId: process.env.WORKOS_DWM_ORGANIZATION_ID,
-  // });
-
-  // console.log(workosdata);
-
-  const signInUrl = await getSignInUrl();
-
-  if (!user) {
-    return <Login signInUrl={signInUrl} />;
-  }
-
-  async function handleLogout() {
-    "use server";
-    await signOut();
-  }
-
-  const HRMembers = ["Shekhar Kalshetti", "Abhishek Mulay"];
-
   return (
     <>
       <div className="flex max-h-screen h-full w-full flex-col bg-muted/40">
@@ -207,9 +182,9 @@ export default async function HomePage() {
                 <nav className="grid gap-6 text-lg font-medium">
                   <Link
                     href="#"
-                    className="flex items-center gap-4 px-2.5 text-foreground"
+                    className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                   >
-                    <Package2 className="h-5 w-5" />
+                    <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
                     <span className="sr-only">Acme Inc</span>
                   </Link>
                   <Link
@@ -279,32 +254,18 @@ export default async function HomePage() {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <form
-                    action={async () => {
-                      "use server";
-                      await signOut();
-                    }}
-                  >
-                    <button type="submit">Logout</button>
-                  </form>
-                </DropdownMenuItem>
+                <DropdownMenuItem>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
-          <div className="pl-6">
-            <h3 className="text-2xl mb-2 font-semibold tracking-tight">
-              Welcome{`, ${user.firstName} ${user.lastName}`}
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Today is {getCurrentDate("/")}
-            </p>
-          </div>
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
             <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-3">
+              <h3 className="text-2xl font-semibold tracking-tight">
+                Hello, Shekhar Kalshetti
+              </h3>
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 max-h-screen">
                 <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm sm:col-span-4">
-                  <div className="flex flex-col space-y-1.5 p-0.75 pb-2">
+                  <div className="flex flex-col space-y-1.5 p-0.75 pb-4">
                     <div className="flex flex-row">
                       <span className="mt-2 text-2xl font-semibold leading-none tracking-tight grow">
                         Departments
@@ -313,22 +274,25 @@ export default async function HomePage() {
                         <span className="block md:hidden">
                           <Plus size={20} />
                         </span>
-                        <span className="hidden md:block">Add department</span>
+                        <span className="hidden md:block">
+                          Create department
+                        </span>
                       </Button>
                     </div>
                     <div className="text-sm text-muted-foreground max-w-lg text-balance leading-relaxed">
                       Description
                     </div>
                   </div>
-                  <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-5">
-                    <DeptCard title="HR" members={HRMembers} />
-                    <DeptCard title="Finance" members={HRMembers} />
-                    <DeptCard title="Logistics" members={HRMembers} />
+                  <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center top-1/2 mb-16">
+                      <CircleOff className="sm:h-8 sm:w-8 md:h-10 md:w-10 mb-5" />
+                      <h3 className="px-10 sm:text-sm md:text-lg lg:text-xl tracking-tight text-center">
+                        You have not created any departments. <br />
+                        Click on the "Create department" button to begin.
+                      </h3>
+                    </div>
                   </div>
                 </div>
-                {/* <div className="hidden lg:flex lg:flex-col lg:justify-center lg:p-6 rounded-lg lg:border lg:bg-card lg:text-card-foreground shadow-sm lg:col-span-1">
-                  <HomeCalendar />
-                </div> */}
               </div>
             </div>
           </main>

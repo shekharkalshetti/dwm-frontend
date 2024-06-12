@@ -3,13 +3,26 @@ import { Login } from "@/components/login";
 import { ModeToggle } from "@/components/mode-toggle";
 
 import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import {
   File,
   Home,
   LineChart,
+  ListFilter,
+  MoreHorizontal,
   Package,
   Package2,
   PanelLeft,
   Plus,
+  PlusCircle,
   ShoppingCart,
   Users2,
 } from "lucide-react";
@@ -32,6 +45,7 @@ import {
 } from "@/components/ui/card";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
@@ -49,11 +63,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { WorkOS } from "@workos-inc/node";
-import { HomeCalendar } from "@/components/calender";
 import DeptCard from "@/components/department-card";
-import { getCurrentDate } from "./department/page";
+import { TaskList } from "@/components/task-list";
 
-export default async function HomePage() {
+export function getCurrentDate(separator = "") {
+  let newDate = new Date();
+  let date = newDate.getDate();
+  let month = newDate.getMonth() + 1;
+  let year = newDate.getFullYear();
+
+  return `${date}${separator}${
+    month < 10 ? `0${month}` : `${month}`
+  }${separator}${year}`;
+}
+
+export default async function DepartmentPage() {
   const { user } = await getUser();
 
   const workos = new WorkOS(process.env.WORKOS_API_KEY);
@@ -254,7 +278,7 @@ export default async function HomePage() {
               <BreadcrumbList>
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild>
-                    <Link href="#">Dashboard</Link>
+                    <Link href="/">Go to Home</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
@@ -304,31 +328,15 @@ export default async function HomePage() {
             <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-3">
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 max-h-screen">
                 <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm sm:col-span-4">
-                  <div className="flex flex-col space-y-1.5 p-0.75 pb-2">
+                  <div className="flex flex-col space-y-1.5 p-0.75">
                     <div className="flex flex-row">
-                      <span className="mt-2 text-2xl font-semibold leading-none tracking-tight grow">
-                        Departments
+                      <span className="ml-6 mt-2 text-2xl font-semibold leading-none tracking-tight grow mb-2">
+                        HR Department
                       </span>
-                      <Button>
-                        <span className="block md:hidden">
-                          <Plus size={20} />
-                        </span>
-                        <span className="hidden md:block">Add department</span>
-                      </Button>
                     </div>
-                    <div className="text-sm text-muted-foreground max-w-lg text-balance leading-relaxed">
-                      Description
-                    </div>
-                  </div>
-                  <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-5">
-                    <DeptCard title="HR" members={HRMembers} />
-                    <DeptCard title="Finance" members={HRMembers} />
-                    <DeptCard title="Logistics" members={HRMembers} />
+                    <TaskList />
                   </div>
                 </div>
-                {/* <div className="hidden lg:flex lg:flex-col lg:justify-center lg:p-6 rounded-lg lg:border lg:bg-card lg:text-card-foreground shadow-sm lg:col-span-1">
-                  <HomeCalendar />
-                </div> */}
               </div>
             </div>
           </main>
