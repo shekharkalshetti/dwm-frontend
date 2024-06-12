@@ -29,8 +29,10 @@ const DeptCard = ({ title, members }: { title: string; members: string[] }) => {
         <CardTitle className="text-lg mb-1">{title}</CardTitle>
         <CardDescription>
           <div className="flex flex-wrap mb-2">
-            {members.map((member) => (
-              <Badge className="text-[10px] mr-2 mb-2">{member}</Badge>
+            {members.map((member, index) => (
+              <Badge key={index} className="text-[10px] mr-2 mb-2">
+                {member}
+              </Badge>
             ))}
           </div>
           <div className="text-xs text-muted-foreground max-w-lg text-balance leading-relaxed">
