@@ -3,7 +3,6 @@ import { Login } from "@/components/login";
 import { ModeToggle } from "@/components/mode-toggle";
 
 import {
-  File,
   Home,
   LineChart,
   Package,
@@ -14,7 +13,6 @@ import {
   Users2,
 } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -22,14 +20,6 @@ import {
   BreadcrumbList,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -49,7 +39,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { WorkOS } from "@workos-inc/node";
-import { HomeCalendar } from "@/components/calender";
 import DeptCard from "@/components/department-card";
 import { getCurrentDate } from "./department/page";
 
@@ -303,8 +292,8 @@ export default async function HomePage() {
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
             <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-3">
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 max-h-screen">
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm sm:col-span-4">
-                  <div className="flex flex-col space-y-1.5 p-0.75 pb-2">
+                <div className="p-5 rounded-lg border bg-card text-card-foreground shadow-sm sm:col-span-4">
+                  <div className="flex flex-col space-y-1.5 p-0.75 pb-1">
                     <div className="flex flex-row">
                       <span className="mt-2 text-2xl font-semibold leading-none tracking-tight grow">
                         Departments
@@ -320,15 +309,12 @@ export default async function HomePage() {
                       Description
                     </div>
                   </div>
-                  <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-5">
+                  <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
                     <DeptCard title="HR" members={HRMembers} />
                     <DeptCard title="Finance" members={HRMembers} />
                     <DeptCard title="Logistics" members={HRMembers} />
                   </div>
                 </div>
-                {/* <div className="hidden lg:flex lg:flex-col lg:justify-center lg:p-6 rounded-lg lg:border lg:bg-card lg:text-card-foreground shadow-sm lg:col-span-1">
-                  <HomeCalendar />
-                </div> */}
               </div>
             </div>
           </main>

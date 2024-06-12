@@ -11,7 +11,7 @@ import { Badge } from "./ui/badge";
 const DeptCard = ({ title, members }: { title: string; members: string[] }) => {
   return (
     <Card
-      className="w-full h-100 md:h-100 md:w-80"
+      className="w-full h-100 md:h-100 md:w-80 mr-2"
       x-chunk="dashboard-07-chunk-4"
     >
       <CardContent className="pt-6 pb-6">
