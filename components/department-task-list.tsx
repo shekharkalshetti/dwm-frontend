@@ -71,7 +71,9 @@ export function DepartmentTaskList() {
             <div className="flex items-center">
               <TabsList>
                 <TabsTrigger value="daily">{`${day} ${month} Data`}</TabsTrigger>
-                <TabsTrigger value="monthly">This Month's Data</TabsTrigger>
+                <TabsTrigger value="monthly">
+                  This Month&apos;s Data
+                </TabsTrigger>
                 <TabsTrigger value="custom">Custom Data</TabsTrigger>
               </TabsList>
               <div className="flex flex-row ml-auto">
