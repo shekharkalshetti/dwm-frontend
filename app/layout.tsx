@@ -4,6 +4,7 @@ import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import HeaderFooter from "@/components/header-footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -34,7 +35,7 @@ export default function RootLayout({
           enableSystem
           storageKey="dwm-theme"
         >
-          {children}
+          <HeaderFooter>{children}</HeaderFooter>
         </ThemeProvider>
       </body>
     </html>

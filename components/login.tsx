@@ -26,7 +26,7 @@ export function Login({ signInUrl }: { signInUrl: string }) {
           </div>
         </div>
       </div>
-      <div className="bg-muted md:block">
+      <div className="bg-muted sm:block">
         <Image
           src="/image.jpg"
           alt="Image"

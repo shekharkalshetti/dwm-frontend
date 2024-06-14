@@ -21,11 +21,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "./ui/scroll-area";
+import CreateTask from "./create-task";
 
 export function TaskList() {
   return (
-    <div className="flex max-h-screen w-full flex-col">
-      <div className="flex flex-col sm:gap-4 sm:py-4 sm:px-6">
+    <div className="flex w-full flex-col">
+      <div className="flex flex-col sm:gap-4 sm:py-2">
         <main className="grid flex-1 items-start gap-4 sm:py-0 md:gap-8">
           <Tabs defaultValue="tasks">
             <div className="flex items-center">
@@ -56,18 +58,15 @@ export function TaskList() {
                     </DropdownMenuCheckboxItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-                <Button size="sm" className="h-8 gap-1">
-                  <PlusCircle className="h-3.5 w-3.5" />
-                  <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Add Product
-                  </span>
-                </Button>
+                <CreateTask />
               </div>
             </div>
             <TabsContent value="tasks">
               <Card x-chunk="dashboard-06-chunk-0">
                 <CardContent>
                   <Table>
+                    {/* <ScrollArea className="h-[260px]">
+                      <div className="p-4"> */}
                     <TableHeader>
                       <TableRow>
                         <TableHead>Task name</TableHead>
@@ -87,7 +86,7 @@ export function TaskList() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow>
+                      <TableRow className="h-2">
                         <TableCell className="font-medium">
                           Staff Attendance
                         </TableCell>
@@ -197,42 +196,6 @@ export function TaskList() {
                       </TableRow>
                       <TableRow>
                         <TableCell className="font-medium">
-                          Quality Staff Recruitment
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="outline">Recruitment</Badge>
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell">
-                          Data Entry
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell">
-                          Once (2023-12-25)
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell">
-                          2023-12-25 11:59 PM
-                        </TableCell>
-                        <TableCell>
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button
-                                aria-haspopup="true"
-                                size="icon"
-                                variant="ghost"
-                              >
-                                <MoreHorizontal className="h-4 w-4" />
-                                <span className="sr-only">Toggle menu</span>
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                              <DropdownMenuItem>Edit</DropdownMenuItem>
-                              <DropdownMenuItem>Delete</DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">
                           Daily Manpower Cost Report
                         </TableCell>
                         <TableCell>
@@ -267,43 +230,9 @@ export function TaskList() {
                           </DropdownMenu>
                         </TableCell>
                       </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium">
-                          Quality Staff Recruitment
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="outline">Recruitment</Badge>
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell">
-                          Data Entry
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell">
-                          Once (2023-12-25)
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell">
-                          2023-12-25 11:59 PM
-                        </TableCell>
-                        <TableCell>
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button
-                                aria-haspopup="true"
-                                size="icon"
-                                variant="ghost"
-                              >
-                                <MoreHorizontal className="h-4 w-4" />
-                                <span className="sr-only">Toggle menu</span>
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                              <DropdownMenuItem>Edit</DropdownMenuItem>
-                              <DropdownMenuItem>Delete</DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
                     </TableBody>
+                    {/* </div>
+                    </ScrollArea> */}
                   </Table>
                 </CardContent>
                 <CardFooter>
